@@ -1,10 +1,14 @@
 import React from 'react'
+/*
+    -- CityResult -- 
 
-export default function CityResult(props) {
+    Displays a city name and it's population.
+*/
+export default function CityResult({city, pop}) {
     return (
         <div>
-            <h2>{props.city}</h2>
-            <p>Population: {props.pop}</p>
+            <h2>{city}</h2>
+            <p>Population: {pop}</p>
         </div>
     )
 }
