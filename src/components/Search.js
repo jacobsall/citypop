@@ -10,40 +10,48 @@ export default class CitySearch extends Component {
         this.state = {
             searchMode: props.mode,
             searchPhrase: '',
+            error: false,
+            errorMessage:  '',
             cityPop: '',
             cities: [],
-            error: false,
             showResult: false,
         }
     }
 
     search=()=>{
-        console.log(this.state.searchPhrase)
-        this.setState({
-            error: false,
-            isLoading: true
-        })
- 
-        let url = "http://api.geonames.org/searchJSON?q=" + this.state.searchPhrase + "&username=weknowit&orderby=population&cities=cities500&maxRows=3"
-        axios.get(url)
-            .then(response => {
-                let data = response.data.geonames
-                if(data.length > 0){
-                    this.setState({
-                        cityPop: data[0].population,
-                        cities: data,
-                        showResult: true,
-                        isLoading: false
-                    })
-                }
-                else{
-                    this.setState({
-                        error: true,
-                        isLoading: false
-                    })
-                }
+
+        if (this.state.searchPhrase === "" || this.state.searchPhrase.replace(/\s+/g, '').length === 0) {
+            let errorMessage = "You need to enter the name of a " + this.state.searchMode.toLowerCase()
+            this.setState({
+                error: true,
+                errorMessage: errorMessage
             })
-    
+        }
+        else{
+            this.setState({
+                error: false,
+                isLoading: true
+            })
+            let url = "http://api.geonames.org/searchJSON?q=" + this.state.searchPhrase + "&username=weknowit&orderby=population&cities=cities500&maxRows=3"
+            axios.get(url)
+                .then(response => {
+                    let data = response.data.geonames
+                    if(data.length > 0){
+                        this.setState({
+                            cityPop: data[0].population,
+                            cities: data,
+                            showResult: true,
+                            isLoading: false
+                        })
+                    }
+                    else{
+                        this.setState({
+                            error: true,
+                            isLoading: false
+                        })
+                    }
+                })
+        }
     }
 
     saveInput=(e)=>{
@@ -77,7 +85,7 @@ export default class CitySearch extends Component {
         return (
             <div>
                 {this.state.showResult ? this.resultField() : this.searchField()}
-                {this.state.error ? <ErrorBox/> : <></>}
+                {this.state.error ? <ErrorBox message={this.state.errorMessage}/> : <></>}
                 {this.state.isLoading ? <h1>loading...</h1> : <></>}
             </div>
         )

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function ErrorBox() {
+export default function ErrorBox(props) {
     return (
         <div>
-            This is an error
+            {props.message}
         </div>
     )
 }
