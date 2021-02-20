@@ -1,9 +1,16 @@
 import React from 'react'
+import CityResult from "./CityResult"
 
-export default function CountryResult() {
+export default function CountryResult({country, cities}) {
+
     return (
-        <div>
-            This is a country result
-        </div>
+        <>
+            <h2>{country}</h2>
+            {cities.map(city =>(
+                <button key={city.geonameId} >
+                    {city.name}
+                </button>
+            ))}
+        </>
     )
 }
