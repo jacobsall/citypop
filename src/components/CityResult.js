@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function CityResult() {
+export default function CityResult(props) {
     return (
         <div>
-            This is a city result
+            <h2>{props.name}</h2>
+            <p>{props.population}</p>
         </div>
     )
 }
