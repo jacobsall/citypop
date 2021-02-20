@@ -65,7 +65,7 @@ export default class CitySearch extends Component {
     resultField=()=>{
         switch (this.state.searchMode) {
             case 'CITY':
-                return <CityResult city={this.state.searchPhrase} population={this.state.cityPop}/>
+                return <CityResult city={this.state.searchPhrase} pop={this.state.cityPop}/>
             case 'COUNTRY':
                 return <CountryResult country={this.state.searchPhrase} cities={this.state.cities}/>
             default:

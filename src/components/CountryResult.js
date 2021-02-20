@@ -1,16 +1,43 @@
-import React from 'react'
+import React, { Component } from 'react'
 import CityResult from "./CityResult"
 
-export default function CountryResult({country, cities}) {
+export default class CountryResult extends Component {
+    constructor(props){
+        super()
+        this.state = {
+            showPop: false,
+            cityClicked: '',
+            popClicked: ''
+        }
+    }
 
-    return (
-        <>
-            <h2>{country}</h2>
-            {cities.map(city =>(
-                <button key={city.geonameId} >
-                    {city.name}
-                </button>
-            ))}
-        </>
-    )
+    cityList=()=>{
+        return (
+            <>
+                <h2>{this.props.country}</h2>
+                {this.props.cities.map(city =>(
+                    <button key={city.geonameId} onClick={()=>this.showPop(city.population, city.name)}>
+                        {city.name}
+                    </button>
+                ))}
+            </>
+        )
+    }
+
+    showPop=(population, name)=>{
+        this.setState({
+            showPop: true,
+            cityClicked: name,
+            popClicked: population
+        })
+    }
+
+    render(){
+        return (
+            <>
+            {!this.state.showPop ? this.cityList() : <CityResult city={this.state.cityClicked} pop={this.state.popClicked}/>}
+            </>
+        )
+    }
+    
 }

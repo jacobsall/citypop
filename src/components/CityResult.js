@@ -4,7 +4,7 @@ export default function CityResult(props) {
     return (
         <div>
             <h2>{props.city}</h2>
-            <p>{props.population}</p>
+            <p>{props.pop}</p>
         </div>
     )
 }
