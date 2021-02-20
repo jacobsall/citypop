@@ -13,15 +13,15 @@ export default class CitySearch extends Component {
             error: false,
             errorMessage:  '',
             cityPop: '',
+            cityName: '',
             cities: [],
             showResult: false,
         }
     }
 
     search=()=>{
-
         if (this.state.searchPhrase === "" || this.state.searchPhrase.replace(/\s+/g, '').length === 0) {
-            let errorMessage = "You need to enter the name of a " + this.state.searchMode.toLowerCase()
+            let errorMessage = "Please enter a " + this.state.searchMode.toLowerCase()
             this.setState({
                 error: true,
                 errorMessage: errorMessage
@@ -36,22 +36,35 @@ export default class CitySearch extends Component {
             axios.get(url)
                 .then(response => {
                     let data = response.data.geonames
-                    if(data.length > 0){
+                    if (this.validateCityResult(data)){
                         this.setState({
                             cityPop: data[0].population,
-                            cities: data,
+                            cityName: data[0].name,
                             showResult: true,
                             isLoading: false
                         })
                     }
+                    else if (this.state.searchMode === 'COUNTRY'){
+                            this.setState({
+                                cities: data,
+                                showResult: true,
+                                isLoading: false
+                            })
+                    }
                     else{
+                        let errorMessage = "Invalid " + this.state.searchMode.toLowerCase() + ", please try again."
                         this.setState({
                             error: true,
+                            errorMessage: errorMessage,
                             isLoading: false
                         })
                     }
                 })
         }
+    }
+
+    validateCityResult=(data)=>{
+        return data.length > 0 && this.state.searchMode === 'CITY' && data[0].name.toLowerCase() === this.state.searchPhrase.toLowerCase()
     }
 
     saveInput=(e)=>{
@@ -73,7 +86,7 @@ export default class CitySearch extends Component {
     resultField=()=>{
         switch (this.state.searchMode) {
             case 'CITY':
-                return <CityResult city={this.state.searchPhrase} pop={this.state.cityPop}/>
+                return <CityResult city={this.state.cityName} pop={this.state.cityPop}/>
             case 'COUNTRY':
                 return <CountryResult country={this.state.searchPhrase} cities={this.state.cities}/>
             default:
