@@ -31,8 +31,8 @@ export default class Search extends Component {
 
     /* Performs a search on the geonames API */
     search=()=>{
-        // Test empty search phrase and only whitespaces
-        if (this.state.searchPhrase === "" || this.state.searchPhrase.replace(/\s+/g, '').length === 0) {
+        // Test empty search phrase and only whitespaces or special signs
+        if (this.state.searchPhrase === "" || this.state.searchPhrase.replace(/[^\w\s+]/g, '').length === 0) {
             let errorMessage = "Please enter a " + this.state.searchMode.toLowerCase()
             this.setState({
                 error: true,
