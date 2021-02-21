@@ -1,8 +1,11 @@
-import {React, useState, useRef, Component} from 'react'
+import {React, Component} from 'react'
+import { CircularProgress } from "@material-ui/core";
+import axios from 'axios'
 import ErrorBox from "./ErrorBox"
 import CityResult from "./CityResult"
 import CountryResult from "./CountryResult"
-import axios from 'axios'
+
+import '../css/Search.css'
 /*
     -- Search --
 
@@ -101,11 +104,21 @@ export default class Search extends Component {
     /* Default view. Shows text field and button for searching. */
     searchField=()=>{
         return(
-        <>
+        <div className="searchContainer">
             <h2>SEARCH BY {this.state.searchMode}</h2>
-            <input type="text" value={this.state.searchPhrase} onChange={this.saveInput}></input>
-            <button onClick={this.search}>Search</button>
-        </>
+            <div className="wrapper">
+                <input 
+                    className="input" type="text" 
+                    value={this.state.searchPhrase} 
+                    onChange={this.saveInput} 
+                    placeholder={"Enter a " + this.state.searchMode.toLowerCase() + "..."}
+                />  
+                <button 
+                    className="searchButton"
+                    onClick={this.search}
+                />
+            </div>
+        </div>
         ) 
     }
 
@@ -123,10 +136,10 @@ export default class Search extends Component {
 
     render(){
         return (
-            <div>
+            <div className="container">
                 {this.state.showResult ? this.resultField() : this.searchField()}
                 {this.state.error ? <ErrorBox message={this.state.errorMessage}/> : <></>}
-                {this.state.isLoading ? <h1>loading...</h1> : <></>}
+                {this.state.isLoading ? <CircularProgress/> : <></>}
             </div>
         )
     }

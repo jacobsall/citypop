@@ -1,0 +1,45 @@
+.homeContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.link{
+    text-decoration: none;
+}
+
+.modeButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 20px;
+    font-family: inherit;
+    font-weight: bold;
+    
+    min-height: 100px;
+    min-width: 300px;
+    margin: 10px;
+
+    border: solid;
+    border-radius: 1px;
+    border-width: 5px;
+    border-color: #47a3ff;
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.4);
+    background-color: #f1f1f1;
+    color: #47a3ff;
+
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+.modeButton:hover{
+    background-color: #47a3ff;
+    color: white;
+}
+
+.modeButton:active{
+    outline: none;
+}

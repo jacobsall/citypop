@@ -1,0 +1,15 @@
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.headerText{
+    font-size: 120px;
+    color: #47a3ff;
+    font-family: fancyFont;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: default;
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Alert } from '@material-ui/lab';
+import '../css/ErrorBox.css'
 /* 
     -- ErrorBox --
 
@@ -7,7 +8,7 @@ import { Alert } from '@material-ui/lab';
 */
 export default function ErrorBox({ message }) {
     return (
-        <div>
+        <div className="error">
             <Alert severity="error">{message}</Alert>
         </div>
     )

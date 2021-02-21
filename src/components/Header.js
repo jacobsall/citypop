@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/Header.css'
 /*
     -- Header --
 
@@ -6,8 +7,8 @@ import React from 'react'
 */
 export default function Header() {
     return (
-        <div>
-            <h1>CityPop</h1>
+        <div className="header">
+            <h1 className="headerText">CityPop</h1>
         </div>
     )
 }

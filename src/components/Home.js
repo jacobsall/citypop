@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import '../css/Home.css'
 /*
     -- Home --
 
@@ -7,12 +8,12 @@ import {Link} from 'react-router-dom'
 */
 export default function Home() {
     return (
-        <div>
-            <Link to="/search_city">
-                <button>search by city</button>
+        <div className="homeContainer">
+            <Link to="/search_city" className="link">
+                <button className="modeButton">SEARCH BY CITY</button>
             </Link>
-            <Link to="/search_country">
-                <button>search by country</button>
+            <Link to="/search_country" className="link">
+                <button className="modeButton">SEARCH BY COUNTRY</button>
             </Link>
         </div>
     )
