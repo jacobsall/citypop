@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CityResult from "./CityResult"
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import '../css/CountryResult.css'
 /*
     -- CountryResult --
@@ -40,10 +41,28 @@ export default class CountryResult extends Component {
         })
     }
 
+    /* Hides the CityResult by setting showPop = false */
+    hidePopulation=(population, name)=>{
+        this.setState({
+            showPop: false,
+        })
+    }
+
+
+
+    cityResultView=()=>{
+        return(
+            <div className="cityResultView">
+            <CityResult city={this.state.cityClicked} pop={this.state.popClicked}/>
+            <button className="backButton" onClick={this.hidePopulation}><ArrowBackIcon /></button>
+            </div>
+        )
+    }
+
     render(){
         return (
             <>
-            {!this.state.showPop ? this.cityList() : <CityResult city={this.state.cityClicked} pop={this.state.popClicked}/>}
+            {!this.state.showPop ? this.cityList() : this.cityResultView()}
             </>
         )
     }

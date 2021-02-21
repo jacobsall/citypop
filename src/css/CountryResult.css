@@ -17,3 +17,34 @@
     border-bottom: transparent;
     border-top: transparent;
 }
+
+.cityResultView{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #47a3ff;
+}
+
+.backButton{
+    border: solid;
+    border-radius: 50%;
+    border-color: #47a3ff;
+    color: #47a3ff;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    transition-duration: 0.3s;
+    background-color: #f1f1f1;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
+    margin: 30px;
+}
+
+.backButton:hover{
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.4);
+}
+
+.backButton:active{
+    outline: none;
+}

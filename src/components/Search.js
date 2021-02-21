@@ -101,6 +101,13 @@ export default class Search extends Component {
         })
     }
 
+    /* Enables pressing the enter key in text field to search */
+    handleKeyDown=(e)=>{
+        if (e.keyCode === 13) {
+            this.search()
+          }
+    }
+
     /* Default view. Shows text field and button for searching. */
     searchField=()=>{
         return(
@@ -112,6 +119,7 @@ export default class Search extends Component {
                     value={this.state.searchPhrase} 
                     onChange={this.saveInput} 
                     placeholder={"Enter a " + this.state.searchMode.toLowerCase() + "..."}
+                    onKeyDown={this.handleKeyDown}
                 />  
                 <button 
                     className="searchButton"
