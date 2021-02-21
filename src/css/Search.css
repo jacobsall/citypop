@@ -17,6 +17,11 @@
     
 }
 
+.searchTitle{
+    display: flex;
+    align-items: center;
+}
+
 .wrapper{
     display: flex;
     flex-direction: row;

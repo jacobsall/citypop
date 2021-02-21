@@ -4,6 +4,8 @@ import axios from 'axios'
 import ErrorBox from "./ErrorBox"
 import CityResult from "./CityResult"
 import CountryResult from "./CountryResult"
+import PublicIcon from '@material-ui/icons/Public';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
 import '../css/Search.css'
 /*
     -- Search --
@@ -111,7 +113,7 @@ export default class Search extends Component {
     searchField=()=>{
         return(
         <div className="searchContainer">
-            <h2>SEARCH BY {this.state.searchMode}</h2>
+            <h2 className="searchTitle">SEARCH BY {this.state.searchMode} {this.state.searchMode==='CITY' ? <LocationCityIcon/> : <PublicIcon/>}</h2>
             <div className="wrapper">
                 <input 
                     className="input" type="text" 
