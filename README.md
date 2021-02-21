@@ -16,6 +16,7 @@ Includes:
 - axios
 - material-ui/core
 - material-ui/lab
+- material-ui/icons
 
 
 ### `npm start`
