@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CityResult from "./CityResult"
+import '../css/CountryResult.css'
 /*
     -- CountryResult --
 
@@ -19,14 +20,14 @@ export default class CountryResult extends Component {
     /* Default view. Displays buttons for the cities received as props.*/
     cityList=()=>{
         return (
-            <>
-                <h2>{this.props.country}</h2>
+            <div className="cityList">
+                <h2>{this.props.country.toUpperCase()}<hr className="divider"/></h2>
                 {this.props.cities.map(city =>(
-                    <button key={city.geonameId} onClick={()=>this.showPopulation(city.population, city.name)}>
+                    <button className="modeButton cityListButton" key={city.geonameId} onClick={()=>this.showPopulation(city.population, city.name)}>
                         {city.name}
                     </button>
                 ))}
-            </>
+            </div>
         )
     }
 

@@ -1,0 +1,19 @@
+.cityList{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: #47a3ff;
+}
+
+.divider{
+    border: solid;
+}
+
+.cityListButton{
+    margin-bottom: 0;
+    margin-top: 0;
+    border-bottom: transparent;
+    border-top: transparent;
+}

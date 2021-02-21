@@ -1,0 +1,30 @@
+.cityContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #47a3ff;
+}
+
+.populationBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100px;
+    min-width: 300px;
+    margin: 10px;
+
+    border: solid;
+    border-radius: 1px;
+    border-width: 5px;
+    border-color: #47a3ff;
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.4);
+    background-color: #f1f1f1;
+    color: #47a3ff;
+}
+
+.populationTitle{
+    margin: 0;
+}
