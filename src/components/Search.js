@@ -7,6 +7,7 @@ import CountryResult from "./CountryResult"
 import PublicIcon from '@material-ui/icons/Public';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import '../css/Search.css'
+import countryCodes from '../data/countries.json'
 /*
     -- Search --
 
@@ -33,8 +34,7 @@ export default class Search extends Component {
 
     /* Performs a search on the geonames API */
     search=()=>{
-        // Test empty search phrase and only whitespaces or special signs
-        if (this.state.searchPhrase === "" || this.state.searchPhrase.replace(/[^\w\s+]/g, '').length === 0) {
+        if (this.testSearchPhrase()) {
             let errorMessage = "Please enter a " + this.state.searchMode.toLowerCase()
             this.setState({
                 error: true,
@@ -47,8 +47,23 @@ export default class Search extends Component {
                 error: false,
                 isLoading: true
             })
-            // URL for fetching from the geonames API. Orders responses by population.
-            let url = "http://api.geonames.org/searchJSON?q=" + this.state.searchPhrase + "&username=weknowit&orderby=population&cities=cities500&maxRows=3"
+            
+            // URL for City Search
+            let url = "http://api.geonames.org/searchJSON?q=" + this.state.searchPhrase + "&username=weknowit&orderby=population&cities=cities500&maxRows=1"
+
+            /* 
+                Modify search parameters for CountrySearch to only work for actual countries.
+                Lookup using countries.json, containing countries and matching ISO 3166-1 codes.
+                Makes API fetch using the country code instead of the search phrase.
+            */
+            if(this.state.searchMode === "COUNTRY"){
+                let country = countryCodes.find(item => item.Name.toLowerCase() === this.state.searchPhrase.toLowerCase())
+                let countryCode = (country !== undefined) ? country.Code : undefined
+                url = "http://api.geonames.org/searchJSON?country=" + countryCode +  "&username=weknowit&orderby=population&cities=cities500&maxRows=3"
+            }
+
+            
+            // Fetching data from geonames API. Responses are ordered by population
             axios.get(url)
                 .then(response => {
                     let data = response.data.geonames
@@ -93,6 +108,13 @@ export default class Search extends Component {
     /* Checks that a valid country search has been made. Response data has to exist and searchMode COUNTRY.*/
     validateCountryResult=(data)=>{
         return data.length > 0 && this.state.searchMode === 'COUNTRY'
+    }
+
+    /* Test empty search phrase and only whitespaces or special signs */
+    testSearchPhrase=()=>{
+        let isEmpty = this.state.searchPhrase === "" 
+        let illegalCharacters = this.state.searchPhrase.replace(/[^\w\s+]/g, '').length === 0
+        return isEmpty || illegalCharacters
     }
 
     /* Save input from the text field to state */

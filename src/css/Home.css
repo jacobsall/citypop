@@ -43,3 +43,7 @@
 .modeButton:active{
     outline: none;
 }
+
+.modeButton:focus{
+    outline: none;
+}
