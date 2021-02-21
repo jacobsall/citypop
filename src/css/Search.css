@@ -64,6 +64,10 @@
     background-color: #4583e0;
 }
 
+.progress{
+    margin-top: 30px;
+}
+
 @media screen and (max-width: 992px) {
     .searchContainer {
         width: 95vw;

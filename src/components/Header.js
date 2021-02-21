@@ -1,5 +1,6 @@
 import React from 'react'
 import '../css/Header.css'
+import {Link} from 'react-router-dom'
 /*
     -- Header --
 
@@ -8,7 +9,9 @@ import '../css/Header.css'
 export default function Header() {
     return (
         <div className="header">
-            <h1 className="headerText">CityPop</h1>
+                <Link to="/" className="headerLink">
+                    CityPop
+                </Link>
         </div>
     )
 }

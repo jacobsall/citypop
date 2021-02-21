@@ -139,7 +139,7 @@ export default class Search extends Component {
             <div className="container">
                 {this.state.showResult ? this.resultField() : this.searchField()}
                 {this.state.error ? <ErrorBox message={this.state.errorMessage}/> : <></>}
-                {this.state.isLoading ? <CircularProgress/> : <></>}
+                {this.state.isLoading ? <div className="progress"><CircularProgress/></div> : <></>}
             </div>
         )
     }
