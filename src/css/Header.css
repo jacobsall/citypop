@@ -2,14 +2,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    height: 300px;
 }
 
 .headerLink{
     text-decoration: none;
-    font-size: 120px;
+    font-size: 150px;
     font-weight: bold;
     color: #47a3ff;
     font-family: fancyFont;
     cursor: pointer;
 }
+
+
+@media screen and (max-width: 992px) {
+    .header {
+        height: 200px;
+    }
+    .headerLink{
+        font-size: 115px;
+    }
+  }
