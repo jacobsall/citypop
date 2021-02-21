@@ -39,10 +39,12 @@
     background-color: #f1f1f1;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
     margin: 30px;
+    transition: 0.4s;
 }
 
 .backButton:hover{
-    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.4);
+    background-color: #47a3ff;
+    color: white;
 }
 
 .backButton:active{
