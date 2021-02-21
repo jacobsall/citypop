@@ -4,7 +4,6 @@ import axios from 'axios'
 import ErrorBox from "./ErrorBox"
 import CityResult from "./CityResult"
 import CountryResult from "./CountryResult"
-
 import '../css/Search.css'
 /*
     -- Search --
@@ -12,7 +11,7 @@ import '../css/Search.css'
     Can be used to search either cities or countries through searchMode prop.
     Displays textfield and button for searching per default.
     Succesful search displays CityResult or CountryResult, hides part mentioned above.
-    Shows Loading... while fetching data.
+    Shows circular loading bar while fetching data.
     ErrorBox with error message is shown if errors are encountered.
 */
 export default class Search extends Component {

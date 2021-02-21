@@ -32,6 +32,16 @@ export default class CountryResult extends Component {
         )
     }
 
+    /* View showing population for clicked city. */
+    cityResultView=()=>{
+        return(
+            <div className="cityResultView">
+            <CityResult city={this.state.cityClicked} pop={this.state.popClicked}/>
+            <button className="backButton" onClick={this.hidePopulation}><ArrowBackIcon /></button>
+            </div>
+        )
+    }
+
     /* Changes the view from the list of buttons to CityResult of the clicked city by setting showPop = true */
     showPopulation=(population, name)=>{
         this.setState({
@@ -42,21 +52,10 @@ export default class CountryResult extends Component {
     }
 
     /* Hides the CityResult by setting showPop = false */
-    hidePopulation=(population, name)=>{
+    hidePopulation=()=>{
         this.setState({
             showPop: false,
         })
-    }
-
-
-
-    cityResultView=()=>{
-        return(
-            <div className="cityResultView">
-            <CityResult city={this.state.cityClicked} pop={this.state.popClicked}/>
-            <button className="backButton" onClick={this.hidePopulation}><ArrowBackIcon /></button>
-            </div>
-        )
     }
 
     render(){
